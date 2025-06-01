@@ -30,7 +30,7 @@
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-4">
                 <img 
-                  src="https://via.placeholder.com/60x60" 
+                  src="https://avatar.iran.liara.run/public/boy" 
                   alt="Developer Avatar" 
                   class="rounded-full w-15 h-15"
                 >
@@ -58,18 +58,18 @@
             </h1>
             
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 text-sm text-polka-purple-800 bg-polka-purple-100 rounded-full">Substrate</span>
-              <span class="px-3 py-1 text-sm text-polka-pink-800 bg-polka-pink-100 rounded-full">Polkadot</span>
-              <span class="px-3 py-1 text-sm text-polka-purple-800 bg-polka-purple-100 rounded-full">Rust</span>
-              <span class="px-3 py-1 text-sm text-polka-blue-800 bg-polka-blue-100 rounded-full">Blockchain</span>
+              <span class="px-3 py-1 text-sm rounded-full text-polka-purple-800 bg-polka-purple-100">Substrate</span>
+              <span class="px-3 py-1 text-sm rounded-full text-polka-pink-800 bg-polka-pink-100">Polkadot</span>
+              <span class="px-3 py-1 text-sm rounded-full text-polka-purple-800 bg-polka-purple-100">Rust</span>
+              <span class="px-3 py-1 text-sm rounded-full text-polka-blue-800 bg-polka-blue-100">Blockchain</span>
             </div>
 
             <!-- Service Image/Gallery -->
             <div class="mb-6">
               <img 
-                src="https://via.placeholder.com/800x400" 
+                src="/images/substrate-development.jpg" 
                 alt="Service Preview" 
-                class="object-cover w-full h-64 rounded-lg"
+                class="w-full aspect-[16/9] rounded-lg"
               >
             </div>
           </div>
@@ -122,7 +122,7 @@
               <div class="pb-6 border-b">
                 <div class="flex items-center mb-3 space-x-4">
                   <img 
-                    src="https://via.placeholder.com/40x40" 
+                    src="https://avatar.iran.liara.run/public/girl" 
                     alt="Client Avatar" 
                     class="w-10 h-10 rounded-full"
                   >
@@ -144,7 +144,7 @@
               <div class="pb-6 border-b">
                 <div class="flex items-center mb-3 space-x-4">
                   <img 
-                    src="https://via.placeholder.com/40x40" 
+                    src="https://avatar.iran.liara.run/public/boy" 
                     alt="Client Avatar" 
                     class="w-10 h-10 rounded-full"
                   >
@@ -165,7 +165,7 @@
               <div>
                 <div class="flex items-center mb-3 space-x-4">
                   <img 
-                    src="https://via.placeholder.com/40x40" 
+                    src="https://avatar.iran.liara.run/public/girl" 
                     alt="Client Avatar" 
                     class="w-10 h-10 rounded-full"
                   >
