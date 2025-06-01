@@ -42,7 +42,7 @@
           </div>
           <h3 class="mb-2 text-xl font-semibold font-title">Desarrollo Substrate</h3>
           <p class="mb-4 text-gray-600">Desarrollo de parachains, runtime modules y aplicaciones Substrate</p>
-          <span class="font-medium text-pink-600">Desde $500</span>
+          <span class="font-medium text-pink-600">Desde 85 DOT</span>
         </router-link>
         
         <router-link 
@@ -54,7 +54,7 @@
           </div>
           <h3 class="mb-2 text-xl font-semibold font-title">Smart Contracts ink!</h3>
           <p class="mb-4 text-gray-600">Desarrollo y auditoría de smart contracts con ink! para Polkadot</p>
-          <span class="font-medium text-pink-600">Desde $300</span>
+          <span class="font-medium text-pink-600">Desde 45 DOT</span>
         </router-link>
         
         <router-link 
@@ -66,7 +66,7 @@
           </div>
           <h3 class="mb-2 text-xl font-semibold font-title">Diseño UI/UX</h3>
           <p class="mb-4 text-gray-600">Interfaces para dApps y aplicaciones del ecosistema Polkadot</p>
-          <span class="font-medium text-pink-600">Desde $200</span>
+          <span class="font-medium text-pink-600">Desde 35 DOT</span>
         </router-link>
       </div>
     </div>
