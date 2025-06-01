@@ -241,16 +241,22 @@
                 </ul>
 
                 <div class="flex items-center mb-6 text-sm text-gray-600">
-                  <span class="mr-4">📅 7 días de entrega</span>
-                  <span>🔄 2 revisiones</span>
+                  <span class="mr-4">📅 {{ serviceData.pricing?.basic?.deliveryDays || 7 }} días de entrega</span>
+                  <span>🔄 {{ serviceData.pricing?.basic?.revisions || 2 }} revisiones</span>
                 </div>
 
-                <button class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-purple-600 rounded-lg hover:bg-purple-700">
-                  Continuar (85 DOT)
+                <button 
+                  @click="goToCheckout"
+                  class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-purple-600 rounded-lg hover:bg-purple-700"
+                >
+                  Continuar ({{ currentPrice }} DOT)
                 </button>
                 
-                <button class="w-full py-3 font-semibold text-purple-600 transition duration-300 border border-purple-600 rounded-lg hover:bg-purple-50">
-                  Contactar Vendedor
+                <button 
+                  @click="addToWishlist"
+                  class="w-full py-3 font-semibold text-purple-600 transition duration-300 border border-purple-600 rounded-lg hover:bg-purple-50"
+                >
+                  {{ isInWishlist ? 'En Favoritos' : 'Agregar a Favoritos' }}
                 </button>
               </div>
             </div>
@@ -292,14 +298,101 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useServicesStore } from '../stores/services'
+import { useMainStore } from '../stores/main'
 
+const router = useRouter()
 const props = defineProps({
   id: String
 })
 
-onMounted(() => {
-  // Aquí se cargarían los datos del servicio basado en el ID
+const servicesStore = useServicesStore()
+const mainStore = useMainStore()
+
+// Computed properties
+const service = computed(() => servicesStore.serviceDetail)
+const isLoading = computed(() => servicesStore.isLoading)
+const error = computed(() => servicesStore.error)
+
+// Datos por defecto (fallback)
+const defaultService = {
+  id: '1',
+  title: 'Desarrollo de Parachain personalizada con Substrate Framework',
+  seller: {
+    name: 'Carlos Mendoza',
+    address: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'
+  },
+  image: '/images/substrate-development.jpg',
+  pricing: {
+    basic: { price: 85, deliveryDays: 7, revisions: 2 }
+  }
+}
+
+// Obtener datos del servicio (desde store o fallback)
+const serviceData = computed(() => service.value || defaultService)
+const currentPrice = computed(() => serviceData.value.pricing?.basic?.price || 85)
+
+// Methods
+const goToCheckout = () => {
+  const checkoutData = {
+    id: serviceData.value.id,
+    title: serviceData.value.title,
+    seller: serviceData.value.seller?.name || 'Carlos Mendoza',
+    address: serviceData.value.seller?.address || '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
+    image: serviceData.value.image || '/images/substrate-development.jpg',
+    price: currentPrice.value,
+    days: serviceData.value.pricing?.basic?.deliveryDays || 7,
+    revisions: serviceData.value.pricing?.basic?.revisions || 2,
+    package: 'basic'
+  }
+  
+  router.push({
+    name: 'Checkout',
+    query: checkoutData
+  })
+}
+
+const addToCart = () => {
+  if (serviceData.value) {
+    mainStore.addToCart({
+      id: serviceData.value.id,
+      title: serviceData.value.title,
+      price: currentPrice.value,
+      seller: serviceData.value.seller?.name || 'Carlos Mendoza',
+      image: serviceData.value.image || '/images/substrate-development.jpg'
+    })
+  }
+}
+
+const addToWishlist = () => {
+  if (serviceData.value) {
+    mainStore.addToWishlist({
+      id: serviceData.value.id,
+      title: serviceData.value.title,
+      price: currentPrice.value,
+      seller: serviceData.value.seller?.name || 'Carlos Mendoza',
+      image: serviceData.value.image || '/images/substrate-development.jpg'
+    })
+  }
+}
+
+const isInWishlist = computed(() => {
+  return serviceData.value ? mainStore.isInWishlist(serviceData.value.id) : false
+})
+
+onMounted(async () => {
+  // Inicializar stores
+  mainStore.initializeStore()
+  servicesStore.initializeServices()
+  
+  // Cargar datos del servicio específico
+  if (props.id) {
+    await servicesStore.fetchServiceById(props.id)
+  }
+  
   console.log('Service ID:', props.id)
+  console.log('Service loaded:', service.value)
 })
 </script>

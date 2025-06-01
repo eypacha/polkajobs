@@ -26,12 +26,6 @@
               Acerca de
             </router-link>
             <router-link 
-              to="/polkadot-demo" 
-              class="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-pink-600"
-            >
-              Demo Polkadot
-            </router-link>
-            <router-link 
               to="/polkadot-test" 
               class="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-pink-600"
             >
@@ -45,5 +39,20 @@
 
     <!-- Contenido de las rutas -->
     <router-view />
+    
+    <!-- Notificaciones -->
+    <NotificationToast />
   </div>
 </template>
+
+<script setup>
+import { onMounted } from 'vue'
+import { useMainStore } from './stores/main'
+import NotificationToast from './components/NotificationToast.vue'
+
+const mainStore = useMainStore()
+
+onMounted(() => {
+  mainStore.initializeStore()
+})
+</script>

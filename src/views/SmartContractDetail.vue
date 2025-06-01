@@ -249,7 +249,10 @@
                   <span>🔄 2 revisiones</span>
                 </div>
 
-                <button class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-pink-600 rounded-lg hover:bg-pink-700">
+                <button 
+                  @click="goToCheckout"
+                  class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-pink-600 rounded-lg hover:bg-pink-700"
+                >
                   Continuar (45 DOT)
                 </button>
                 
@@ -296,13 +299,64 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useMainStore } from '@/stores/main'
+import { useServicesStore } from '@/stores/services'
+
+const router = useRouter()
+const mainStore = useMainStore()
+const servicesStore = useServicesStore()
 
 const props = defineProps({
   id: String
 })
 
+// Service data with default values for Smart Contract service
+const serviceData = computed(() => ({
+  id: 'smart-contracts',
+  title: 'Desarrollo y Auditoría de Smart Contracts con ink! para Polkadot',
+  seller: {
+    name: 'Ana Rodríguez',
+    address: '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty'
+  },
+  image: '/images/smart-contracts.jpg',
+  pricing: {
+    basic: {
+      price: 45,
+      deliveryDays: 5,
+      revisions: 2
+    }
+  }
+}))
+
+const currentPrice = computed(() => serviceData.value.pricing?.basic?.price || 45)
+
+// Methods
+const goToCheckout = () => {
+  const checkoutData = {
+    id: serviceData.value.id,
+    title: serviceData.value.title,
+    seller: serviceData.value.seller?.name || 'Ana Rodríguez',
+    address: serviceData.value.seller?.address || '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty',
+    image: serviceData.value.image || '/images/smart-contracts.jpg',
+    price: currentPrice.value,
+    days: serviceData.value.pricing?.basic?.deliveryDays || 5,
+    revisions: serviceData.value.pricing?.basic?.revisions || 2,
+    package: 'basic'
+  }
+  
+  router.push({
+    name: 'Checkout',
+    query: checkoutData
+  })
+}
+
 onMounted(() => {
   console.log('Smart Contract Service ID:', props.id)
+  
+  // Initialize stores
+  mainStore.initializeStore()
+  servicesStore.initializeServices()
 })
 </script>

@@ -4,8 +4,9 @@ import About from '../views/About.vue'
 import ServiceDetail from '../views/ServiceDetail.vue'
 import SmartContractDetail from '../views/SmartContractDetail.vue'
 import DesignDetail from '../views/DesignDetail.vue'
-import PolkadotDemo from '../views/PolkadotDemo.vue'
 import PolkadotTest from '../views/PolkadotTest.vue'
+import Checkout from '../views/Checkout.vue'
+import PaymentSuccess from '../views/PaymentSuccess.vue'
 
 const routes = [
   {
@@ -17,6 +18,12 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/service/:id',
+    name: 'ServiceDetail',
+    component: ServiceDetail,
+    props: true
   },
   {
     path: '/service/substrate-development',
@@ -37,9 +44,14 @@ const routes = [
     props: { id: 'ui-ux-design' }
   },
   {
-    path: '/polkadot-demo',
-    name: 'PolkadotDemo',
-    component: PolkadotDemo
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
+  },
+  {
+    path: '/payment-success',
+    name: 'PaymentSuccess',
+    component: PaymentSuccess
   },
   {
     path: '/polkadot-test',

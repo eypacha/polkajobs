@@ -64,26 +64,22 @@
 
         <div v-if="networkInfo" class="flex items-center justify-between">
           <span class="text-sm text-gray-600">Red:</span>
-          <span class="px-2 py-1 text-sm text-green-800 bg-green-100 rounded">
-            {{ networkInfo.chain }}
+          <span class="px-2 py-1 text-sm text-orange-800 bg-orange-100 rounded">
+            {{ networkInfo.chain }} (Testnet)
           </span>
         </div>
       </div>
     </div>
 
-    <!-- Selector de red -->
-    <div v-if="isApiReady" class="mt-4">
-      <label class="block mb-1 text-sm font-medium text-gray-700">Red:</label>
-      <select
-        v-model="currentNetwork"
-        @change="switchNetwork"
-        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-      >
-        <option value="polkadot">Polkadot Mainnet</option>
-        <option value="kusama">Kusama</option>
-        <option value="westend">Westend (Testnet)</option>
-        <option value="local">Local Node</option>
-      </select>
+    <!-- Información de red fija -->
+    <div v-if="isApiReady" class="p-3 mt-4 border border-orange-200 rounded-lg bg-orange-50">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-lg">🧪</span>
+        <span class="text-sm font-medium text-orange-900">Red de Pruebas</span>
+      </div>
+      <p class="text-xs text-orange-700">
+        Usando Westend Testnet - Los tokens WND no tienen valor real
+      </p>
     </div>
 
     <!-- Mensaje de error -->
@@ -139,18 +135,6 @@ const networkInfo = ref(null)
 // Formatear dirección para mostrar
 const formatAddress = (address) => {
   return `${address.slice(0, 6)}...${address.slice(-4)}`
-}
-
-// Cambiar red
-const switchNetwork = async (event) => {
-  const network = event.target.value
-  await connectToApi(network)
-  networkInfo.value = await getNetworkInfo()
-  
-  // Si hay una cuenta seleccionada, actualizar el balance
-  if (selectedAccount.value) {
-    await getBalance(selectedAccount.value.address)
-  }
 }
 
 // Obtener información de red al conectar

@@ -258,7 +258,10 @@
                   <span>🔄 3 revisiones</span>
                 </div>
 
-                <button class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-indigo-600 rounded-lg hover:bg-indigo-700">
+                <button 
+                  @click="goToCheckout"
+                  class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-indigo-600 rounded-lg hover:bg-indigo-700"
+                >
                   Continuar (35 DOT)
                 </button>
                 
@@ -305,13 +308,64 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useMainStore } from '@/stores/main'
+import { useServicesStore } from '@/stores/services'
+
+const router = useRouter()
+const mainStore = useMainStore()
+const servicesStore = useServicesStore()
 
 const props = defineProps({
   id: String
 })
 
+// Service data with default values for UI/UX Design service
+const serviceData = computed(() => ({
+  id: 'ui-ux-design',
+  title: 'Diseño UI/UX para dApps del ecosistema Polkadot',
+  seller: {
+    name: 'Sophie Chen',
+    address: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'
+  },
+  image: '/images/ui-ux-design.jpg',
+  pricing: {
+    basic: {
+      price: 35,
+      deliveryDays: 4,
+      revisions: 3
+    }
+  }
+}))
+
+const currentPrice = computed(() => serviceData.value.pricing?.basic?.price || 35)
+
+// Methods
+const goToCheckout = () => {
+  const checkoutData = {
+    id: serviceData.value.id,
+    title: serviceData.value.title,
+    seller: serviceData.value.seller?.name || 'Sophie Chen',
+    address: serviceData.value.seller?.address || '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
+    image: serviceData.value.image || '/images/ui-ux-design.jpg',
+    price: currentPrice.value,
+    days: serviceData.value.pricing?.basic?.deliveryDays || 4,
+    revisions: serviceData.value.pricing?.basic?.revisions || 3,
+    package: 'basic'
+  }
+  
+  router.push({
+    name: 'Checkout',
+    query: checkoutData
+  })
+}
+
 onMounted(() => {
   console.log('Design Service ID:', props.id)
+  
+  // Initialize stores
+  mainStore.initializeStore()
+  servicesStore.initializeServices()
 })
 </script>
