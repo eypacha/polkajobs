@@ -25,6 +25,19 @@
             >
               Acerca de
             </router-link>
+            <router-link 
+              to="/polkadot-demo" 
+              class="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-pink-600"
+            >
+              Demo Polkadot
+            </router-link>
+            <router-link 
+              to="/polkadot-test" 
+              class="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-pink-600"
+            >
+              Test Polkadot
+            </router-link>
+
           </div>
         </div>
       </div>
@@ -34,7 +47,3 @@
     <router-view />
   </div>
 </template>
-
-<script setup>
-
-</script>

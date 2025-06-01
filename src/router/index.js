@@ -4,6 +4,8 @@ import About from '../views/About.vue'
 import ServiceDetail from '../views/ServiceDetail.vue'
 import SmartContractDetail from '../views/SmartContractDetail.vue'
 import DesignDetail from '../views/DesignDetail.vue'
+import PolkadotDemo from '../views/PolkadotDemo.vue'
+import PolkadotTest from '../views/PolkadotTest.vue'
 
 const routes = [
   {
@@ -33,6 +35,16 @@ const routes = [
     name: 'DesignService',
     component: DesignDetail,
     props: { id: 'ui-ux-design' }
+  },
+  {
+    path: '/polkadot-demo',
+    name: 'PolkadotDemo',
+    component: PolkadotDemo
+  },
+  {
+    path: '/polkadot-test',
+    name: 'PolkadotTest',
+    component: PolkadotTest
   }
 ]
 

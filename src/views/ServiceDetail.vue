@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="text-right">
-                <div class="text-2xl font-bold text-purple-600">$850</div>
+                <div class="text-2xl font-bold text-purple-600">85 DOT</div>
                 <div class="text-sm text-gray-500">Precio base</div>
               </div>
             </div>
@@ -214,7 +214,7 @@
               <div>
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="text-xl font-bold font-title">Paquete Básico</h3>
-                  <span class="text-2xl font-bold text-purple-600">$850</span>
+                  <span class="text-2xl font-bold text-purple-600">85 DOT</span>
                 </div>
                 
                 <p class="mb-4 text-gray-600">
@@ -246,7 +246,7 @@
                 </div>
 
                 <button class="w-full py-3 mb-4 font-semibold text-white transition duration-300 bg-purple-600 rounded-lg hover:bg-purple-700">
-                  Continuar ($850)
+                  Continuar (85 DOT)
                 </button>
                 
                 <button class="w-full py-3 font-semibold text-purple-600 transition duration-300 border border-purple-600 rounded-lg hover:bg-purple-50">
