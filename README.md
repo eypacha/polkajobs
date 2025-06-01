@@ -25,6 +25,7 @@ Crear un marketplace descentralizado donde desarrolladores, diseñadores, consul
 - **Router**: Vue Router 4
 - **Blockchain**: Integración con Polkadot.js
 - **Styling**: Tailwind CSS para un diseño moderno y responsive
+- **Tipografía**: Unbounded - the first open source, freely available and on-chain funded font in the world, thanks to the Polkadot treasury
 
 ## 📋 Instalación
 
